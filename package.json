@@ -1,6 +1,6 @@
 {
   "name": "picorules-compiler-js-db-manager",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Database management tool for picorules-compiler-js-core - executes compiled SQL against Oracle, SQL Server and PostgreSQL",
   "type": "module",
   "scripts": {
