@@ -99,6 +99,98 @@ Or use SQL Server Management Studio to run [src/test-data/setup-mssql.sql](src/t
 
 ## Usage
 
+### Test Individual .prb Files
+
+Test a single Picorules file and generate SQL output:
+
+```bash
+npm run test:prb -- sample-prb/rule1.prb
+```
+
+This will:
+1. Read the .prb file
+2. Parse and compile it to SQL (MSSQL dialect by default)
+3. Display the generated SQL output
+4. **Save the SQL to a `.sql` file** in the same directory as the `.prb` file
+
+**Options:**
+
+```bash
+# Generate SQL for a specific dialect
+npm run test:prb -- sample-prb/rule1.prb --dialect oracle
+npm run test:prb -- sample-prb/rule1.prb --dialect mssql
+npm run test:prb -- sample-prb/rule1.prb --dialect postgres
+
+# Save SQL to custom location
+npm run test:prb -- sample-prb/rule1.prb --output output/rule1.sql
+
+# Execute against SQL Server database (requires database setup and EADV table)
+npm run test:prb -- sample-prb/rule1.prb --execute
+```
+
+**Important:** The `--` separator is required to pass arguments through npm to the script.
+
+**Example output:**
+
+```
+🔧 Picorules File Tester
+============================================================
+📄 File: sample-prb/rule1.prb
+🎯 Dialect: mssql
+
+✅ Loaded ruleblock: rule1
+📝 Compiling to SQL...
+✅ Compilation successful (2ms)
+
+📋 Generated SQL:
+============================================================
+WITH
+  UEADV AS (
+    SELECT DISTINCT eid FROM eadv
+  ),
+SQ_EGFR AS (
+    SELECT eid, val AS egfr
+    FROM (...)
+    WHERE rn = 1
+  ),
+  ...
+SELECT UEADV.eid, egfr, ckd, rule1
+INTO ROUT_RULE1
+FROM UEADV
+LEFT JOIN SQ_EGFR ON UEADV.eid = SQ_EGFR.eid
+...
+============================================================
+
+💾 SQL saved to: sample-prb/rule1.sql
+
+✨ Done!
+```
+
+**With --execute flag:**
+
+```
+...
+💾 SQL saved to: sample-prb/rule1.sql
+
+🚀 Executing against SQL Server database...
+------------------------------------------------------------
+✅ Connected to SQL Server database
+🧹 Dropped table ROUT_RULE1
+✅ Executed successfully - 9446 rows (1346ms)
+📊 Sample data: [
+  {
+    "eid": 230833,
+    "egfr": 118,
+    "ckd": 0,
+    "rule1": 0
+  },
+  ...
+]
+✅ MSSQL execution successful!
+✅ SQL Server connection closed
+✨ Done!
+```
+
 ### Validate Against Oracle
 
 ```bash

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { MSSQLConnection } from './db/mssql-connection.js';
-import { MSSQLValidator } from './validators/mssql-validator.js';
+import { MSSQLManager } from './managers/mssql-manager.js';
 import {
   basicRuleblocks,
   aggregationRuleblocks,
@@ -17,42 +17,42 @@ async function main() {
   console.log('='.repeat(60));
 
   const connection = MSSQLConnection.fromEnv();
-  const validator = new MSSQLValidator(connection);
+  const manager = new MSSQLManager(connection);
 
   try {
     await connection.connect();
 
     console.log('\n📦 Test Suite: Basic Functions');
     console.log('-'.repeat(60));
-    const basicResults = await validator.validateMultiple(basicRuleblocks);
+    const basicResults = await manager.validateMultiple(basicRuleblocks);
 
     console.log('\n📦 Test Suite: Aggregation Functions');
     console.log('-'.repeat(60));
-    const aggResults = await validator.validateMultiple(aggregationRuleblocks);
+    const aggResults = await manager.validateMultiple(aggregationRuleblocks);
 
     console.log('\n📦 Test Suite: Window Functions');
     console.log('-'.repeat(60));
-    const windowResults = await validator.validateMultiple(windowRuleblocks);
+    const windowResults = await manager.validateMultiple(windowRuleblocks);
 
     console.log('\n📦 Test Suite: Compute Statements');
     console.log('-'.repeat(60));
-    const computeResults = await validator.validateMultiple(computeRuleblocks);
+    const computeResults = await manager.validateMultiple(computeRuleblocks);
 
     console.log('\n📦 Test Suite: Cross-Ruleblock References');
     console.log('-'.repeat(60));
-    const crossRefResult = await validator.validateWithDependencies(crossReferenceRuleblocks);
+    const crossRefResult = await manager.validateWithDependencies(crossReferenceRuleblocks);
 
     console.log('\n📦 Test Suite: String Functions');
     console.log('-'.repeat(60));
-    const stringResults = await validator.validateMultiple(stringRuleblocks);
+    const stringResults = await manager.validateMultiple(stringRuleblocks);
 
     console.log('\n📦 Test Suite: Exists Function');
     console.log('-'.repeat(60));
-    const existsResults = await validator.validateMultiple(existsRuleblocks);
+    const existsResults = await manager.validateMultiple(existsRuleblocks);
 
     console.log('\n📦 Test Suite: Median Function');
     console.log('-'.repeat(60));
-    const medianResults = await validator.validateMultiple(medianRuleblocks);
+    const medianResults = await manager.validateMultiple(medianRuleblocks);
 
     // Summary
     const allResults = [

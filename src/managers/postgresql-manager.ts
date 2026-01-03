@@ -1,5 +1,5 @@
 import { compile, Dialect, type RuleblockInput } from 'picorules-compiler-js-core';
-import { MSSQLConnection } from '../db/mssql-connection.js';
+import { PostgreSQLConnection } from '../db/postgresql-connection.js';
 
 export interface ValidationResult {
   ruleblockName: string;
@@ -11,8 +11,8 @@ export interface ValidationResult {
   sql?: string;
 }
 
-export class MSSQLValidator {
-  constructor(private connection: MSSQLConnection) {}
+export class PostgreSQLManager {
+  constructor(private connection: PostgreSQLConnection) {}
 
   async validateRuleblock(ruleblock: RuleblockInput): Promise<ValidationResult> {
     const startTime = Date.now();
@@ -20,7 +20,7 @@ export class MSSQLValidator {
     try {
       // Compile the ruleblock
       const compileStart = Date.now();
-      const result = compile([ruleblock], { dialect: Dialect.MSSQL });
+      const result = compile([ruleblock], { dialect: Dialect.POSTGRESQL });
       const compilationTime = Date.now() - compileStart;
 
       if (!result.success) {
@@ -36,6 +36,7 @@ export class MSSQLValidator {
 
       const sql = result.sql[0];
       console.log(`\n📝 Compiled ${ruleblock.name} (${compilationTime}ms)`);
+      console.log(`\n🔍 Generated SQL:\n${sql}\n`);
 
       // Clean up any existing table
       const tableName = `ROUT_${ruleblock.name.toUpperCase()}`;
@@ -50,16 +51,16 @@ export class MSSQLValidator {
       const queryResult = await this.connection.executeQuery(
         `SELECT COUNT(*) as cnt FROM ${tableName}`
       );
-      const rowCount = queryResult.recordset[0]?.cnt || 0;
+      const rowCount = parseInt(queryResult.rows[0]?.cnt || '0', 10);
 
       console.log(`✅ Executed successfully - ${rowCount} rows (${executionTime}ms)`);
 
       // Also show sample data
       const sampleResult = await this.connection.executeQuery(
-        `SELECT TOP 5 * FROM ${tableName}`
+        `SELECT * FROM ${tableName} LIMIT 5`
       );
-      if (sampleResult.recordset && sampleResult.recordset.length > 0) {
-        console.log('📊 Sample data:', JSON.stringify(sampleResult.recordset, null, 2));
+      if (sampleResult.rows && sampleResult.rows.length > 0) {
+        console.log('📊 Sample data:', JSON.stringify(sampleResult.rows, null, 2));
       }
 
       return {
@@ -103,7 +104,7 @@ export class MSSQLValidator {
     try {
       // Compile all ruleblocks together (handles dependencies)
       const compileStart = Date.now();
-      const result = compile(ruleblocks, { dialect: Dialect.MSSQL });
+      const result = compile(ruleblocks, { dialect: Dialect.POSTGRESQL });
       const compilationTime = Date.now() - compileStart;
 
       if (!result.success) {
@@ -141,7 +142,7 @@ export class MSSQLValidator {
       const queryResult = await this.connection.executeQuery(
         `SELECT COUNT(*) as cnt FROM ${tableName}`
       );
-      const rowCount = queryResult.recordset[0]?.cnt || 0;
+      const rowCount = parseInt(queryResult.rows[0]?.cnt || '0', 10);
 
       console.log(`\n✅ All executed successfully - ${rowCount} rows in final table (${executionTime}ms)`);
 

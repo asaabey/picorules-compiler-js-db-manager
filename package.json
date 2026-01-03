@@ -1,36 +1,42 @@
 {
-  "name": "picorules-compiler-js-db-validator",
+  "name": "picorules-compiler-js-db-manager",
   "version": "0.1.0",
-  "description": "Database validation tool for picorules-compiler-js-core - executes compiled SQL against Oracle and SQL Server",
-  "private": true,
+  "description": "Database management tool for picorules-compiler-js-core - executes compiled SQL against Oracle, SQL Server and PostgreSQL",
   "type": "module",
   "scripts": {
     "validate:oracle": "tsx src/validate-oracle.ts",
     "validate:mssql": "tsx src/validate-mssql.ts",
     "validate:all": "npm run validate:oracle && npm run validate:mssql",
+    "test:prb": "tsx src/test-prb-file.ts",
+    "test:all": "tsx src/test-all-ruleblocks.ts",
+    "test:all:compile-only": "tsx src/test-all-ruleblocks.ts --compile-only",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "publish:npm": "bash scripts/publish.sh"
   },
   "keywords": [
     "picorules",
     "sql",
-    "validation",
+    "database",
     "oracle",
     "mssql",
-    "database"
+    "postgresql",
+    "manager"
   ],
   "author": "TKC",
   "license": "MIT",
   "dependencies": {
-    "picorules-compiler-js-core": "file:../picorules-compiler-js-core",
-    "oracledb": "^6.0.0",
+    "@types/pg": "^8.16.0",
+    "dotenv": "^16.0.0",
     "mssql": "^10.0.0",
-    "dotenv": "^16.0.0"
+    "oracledb": "^6.0.0",
+    "pg": "^8.16.3",
+    "picorules-compiler-js-core": "^1.0.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0",
     "tsx": "^4.0.0",
-    "vitest": "^1.0.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
   }
 }

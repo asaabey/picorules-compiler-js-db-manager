@@ -1,0 +1,16 @@
+/* algorithm to find ckd
+
+#define_ruleblock(rule1,
+    {
+        description: "algorithm to find ckd"
+        is_active:2
+
+    }
+);
+
+
+egfr => eadv.lab_bld_egfr_c.val.last();
+
+ckd : { egfr < 90 => 1 },{=> 0};
+
+rule1 : { ckd=1 =>1},{=>0};

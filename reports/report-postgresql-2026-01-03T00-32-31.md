@@ -1,0 +1,322 @@
+# Picorules Test Report
+
+**Generated:** 2026-01-03T00:36:37.543Z
+**Dialect:** postgresql
+**Mode:** Full Execution
+
+## Summary
+
+| Metric | Value |
+|--------|-------|
+| Total .prb files | 168 |
+| Loaded successfully | 168 |
+| Load errors | 0 |
+| Load time | 27ms |
+
+| Compilation | SUCCESS |
+| SQL statements generated | 168 |
+| Compilation time | 42ms |
+
+| Executed | 97 |
+| Passed | 71 |
+| Failed | 26 |
+| Skipped | 71 |
+| Success rate | 73.2% |
+| Execution time | 246051ms |
+
+## Execution Failures
+
+| Ruleblock | Target Table | Dependencies | Error |
+|-----------|--------------|--------------|-------|
+| rrt | srout_rrt | - | column "loc" does not exist |
+| acr_metrics | srout_acr_metrics | - | syntax error at or near "WHEN" |
+| ckd_egfr_metrics | srout_ckd_egfr_metrics | - | column "egfr_l_dt" does not exist |
+| ckd_uacr_metrics | srout_ckd_uacr_metrics | - | column "acr_l_dt" does not exist |
+| dmg_loc | srout_dmg_loc | - | column "loc" does not exist |
+| dmg_hrn | srout_dmg_hrn | - | operator does not exist: ` integer |
+| ckd_coded_dx | srout_ckd_coded_dx | - | invalid input syntax for type numeric: "icpc_u99036" |
+| cd_htn | srout_cd_htn | - | syntax error at or near ")" |
+| cd_cardiac_cad | srout_cd_cardiac_cad | cd_cardiac_ix | invalid input syntax for type numeric: "icd_i21_0" |
+| cd_hep_b_sero | srout_cd_hep_b_sero | dmg | syntax error at or near "Positive" |
+| cd_hepb_coded | srout_cd_hepb_coded | - | syntax error at or near "THEN" |
+| ckd_dense | srout_ckd_dense | - | function substr(numeric, integer) does not exist |
+| ca_misc | srout_ca_misc | - | column "ca_att" does not exist |
+| cd_dm_mx | srout_cd_dm_mx | cd_dm_dx | function to_char(numeric) does not exist |
+| cd_hepb | srout_cd_hepb | - | WITH query name "sq_e_ab" specified more than once |
+| cd_pulm_copd | srout_cd_pulm_copd | - | relation "rout_cd_pulm_copd" already exists |
+| cd_nutr_low | srout_cd_nutr_low | - | column "wt_dt" does not exist |
+| ipa_sep | srout_ipa_sep | - | syntax error at or near ")" |
+| ckd_ttem | srout_ckd_ttem | - | column "rrt_dt_min" does not exist |
+| dmg_loc2 | srout_dmg_loc2 | - | syntax error at or near "," |
+| dmg_loc_origin | srout_dmg_loc_origin | - | column "loc" does not exist |
+| pregnancy | srout_pregnancy | - | column "us_ld" does not exist |
+| egfr_metrics | srout_egfr_metrics | - | column "egfr_rn_dt" does not exist |
+| hba1c_graph | srout_hba1c_graph | cd_dm_dx | WITH query name "sq_hba1c_graph" specified more than once |
+| rrt_hd_loc | srout_rrt_hd_loc | - | syntax error at or near "WHEN" |
+| rrt_new3_wip | srout_rrt_new3_wip | - | column "loc" does not exist |
+
+## Skipped Ruleblocks
+
+These ruleblocks were skipped due to dependency failures or execution stopping:
+
+- acr_graph
+- dmg_source
+- ckd_careplan
+- ckd
+- tg4100
+- ad_aki
+- cd_hepb_master
+- at_risk
+- at_risk_dense
+- bi_vm
+- cd_careplan
+- cvra
+- cd_htn_bp_control
+- bp_graph
+- cd_dyslip
+- cardiac_cad_card
+- cd_cardiac_af
+- cd_htn_card
+- cd_htn_rcm
+- cd_multi_m1
+- ckd_anaemia
+- ckd_journey
+- ckd_diagnostics
+- tg4630
+- ckd_card
+- ckd_cause
+- ckd_complications
+- ckd_labs
+- ckd_prog_vm
+- ckd_shpt
+- cm_vm
+- cvra_predict1_aus
+- dm_card
+- dmg_vm
+- egfr_graph2
+- frm_func_assm
+- global
+- hb_graph
+- kfre
+- mbs715
+- obs_vm
+- pcd
+- periop_nsqip
+- phos_graph
+- rrt_hd_adequacy
+- rrt_1_metrics
+- rrt_hd_param
+- rrt_1_card
+- rrt_assert
+- rrt_hd_acc_iv
+- rrt_hd_acc_card
+- rrt_hd_location
+- rrt_hd_prog_vm
+- rrt_journey
+- rrt_labs_euc
+- rrt_panel_vm
+- rrt_pd_card
+- rrt_tx
+- rrt_tx_card
+- tg2610
+- tg4110
+- tg4122
+- tg4123
+- tg4410
+- tg4420
+- tg4610
+- tg4620
+- tg4660
+- tg4720
+- tg4722
+- tg4810
+
+## Execution Order
+
+Ruleblocks in topological order (dependencies first):
+
+| Order | Ruleblock | Dependencies | Status |
+|-------|-----------|--------------|--------|
+| 1 | rrt | - | FAIL |
+| 2 | acr_graph | rrt | SKIPPED |
+| 3 | acr_metrics | - | FAIL |
+| 4 | dmg | - | PASS |
+| 5 | ckd_egfr_metrics | - | FAIL |
+| 6 | ckd_uacr_metrics | - | FAIL |
+| 7 | ckd_c_gn | - | PASS |
+| 8 | ckd_c_tid | - | PASS |
+| 9 | ckd_c_rnm | - | PASS |
+| 10 | dmg_loc | - | FAIL |
+| 11 | dmg_hrn | - | FAIL |
+| 12 | dmg_source | rrt, dmg_loc, dmg_hrn | SKIPPED |
+| 13 | ckd_careplan | dmg_source | SKIPPED |
+| 14 | ckd_coded_dx | - | FAIL |
+| 15 | engmnt_renal | - | PASS |
+| 16 | ckd_access | - | PASS |
+| 17 | ckd | rrt, ckd_egfr_metrics, ckd_uacr_metrics, ckd_c_gn, ckd_c_tid, ckd_c_rnm, ckd_careplan, ckd_coded_dx, engmnt_renal, ckd_access | SKIPPED |
+| 18 | tg4100 | dmg, rrt, ckd, dmg_source | SKIPPED |
+| 19 | ad_aki | tg4100 | SKIPPED |
+| 20 | cd_dm_dx | - | PASS |
+| 21 | cd_htn | - | FAIL |
+| 22 | cd_cardiac_ix | - | PASS |
+| 23 | cd_cardiac_cad | cd_cardiac_ix | FAIL |
+| 24 | cd_obesity | - | PASS |
+| 25 | cd_cardiac_rhd | cd_cardiac_ix | PASS |
+| 26 | cd_hep_b_sero | dmg | FAIL |
+| 27 | cd_hepb_coded | - | FAIL |
+| 28 | rx_av_nrti | - | PASS |
+| 29 | cd_hepb_master | cd_hep_b_sero, cd_hepb_coded, rx_av_nrti | SKIPPED |
+| 30 | at_risk | ckd, rrt, cd_dm_dx, cd_htn, cd_cardiac_cad, tg4100, cd_obesity, cd_cardiac_rhd, cd_hepb_master, dmg | SKIPPED |
+| 31 | ckd_dense | - | FAIL |
+| 32 | at_risk_dense | ckd_dense | SKIPPED |
+| 33 | dmg_residency | - | PASS |
+| 34 | bi_vm | dmg_hrn, dmg_loc, dmg_residency, dmg, at_risk, ckd, ckd_access, rrt | SKIPPED |
+| 35 | cd_careplan | dmg_source | SKIPPED |
+| 36 | cvra | ckd, cd_dm_dx, cd_careplan, dmg_source | SKIPPED |
+| 37 | cd_htn_bp_control | cvra, cd_htn, rrt | SKIPPED |
+| 38 | bp_graph | rrt, cd_htn, cd_htn_bp_control | SKIPPED |
+| 39 | ca_breast | - | PASS |
+| 40 | ca_careplan | - | PASS |
+| 41 | ca_crc | - | PASS |
+| 42 | ca_endometrial | - | PASS |
+| 43 | ca_lung | - | PASS |
+| 44 | ca_mets | - | PASS |
+| 45 | ca_misc | - | FAIL |
+| 46 | ca_ovarian | - | PASS |
+| 47 | ca_prostate | - | PASS |
+| 48 | ca_rcc | - | PASS |
+| 49 | ca_skin_melanoma | - | PASS |
+| 50 | ca_thyroid | - | PASS |
+| 51 | ca_solid | ca_mets, ca_breast, ca_prostate, ca_rcc, ca_crc, ca_lung, ca_thyroid, ca_endometrial, ca_ovarian, ca_careplan | PASS |
+| 52 | cd_dyslip | cvra, dmg, cd_cardiac_cad | SKIPPED |
+| 53 | cardiac_cad_card | dmg, cd_cardiac_cad, cd_dyslip | SKIPPED |
+| 54 | cd_cardiac_rx | - | PASS |
+| 55 | cd_cardiac_vhd | cd_cardiac_rx, cd_cardiac_ix | PASS |
+| 56 | cd_cardiac_chf | cd_cardiac_ix | PASS |
+| 57 | cd_cardiac_af | cd_cardiac_vhd, cd_cardiac_cad, cd_cardiac_chf, cd_htn, cd_dm_dx, cd_cardiac_rx, cd_cardiac_ix | SKIPPED |
+| 58 | cd_cardiac_device | - | PASS |
+| 59 | cd_cardiac_enc | - | PASS |
+| 60 | cd_cardiac_vte | - | PASS |
+| 61 | cd_cirrhosis | - | PASS |
+| 62 | cd_cns | - | PASS |
+| 63 | cd_cns_ch | - | PASS |
+| 64 | cd_cva | - | PASS |
+| 65 | cd_dm_comp | cd_dm_dx | PASS |
+| 66 | cd_dm_glyc_cntrl | cd_dm_dx | PASS |
+| 67 | cd_dm_mx | cd_dm_dx | FAIL |
+| 68 | cd_dm_rx_rcm | cd_dm_dx, cd_obesity | PASS |
+| 69 | cd_endo_hypothyroid | - | PASS |
+| 70 | cd_haem | - | PASS |
+| 71 | cd_hepb | - | FAIL |
+| 72 | cd_htn_card | cd_htn, cd_htn_bp_control | SKIPPED |
+| 73 | cd_htn_rcm | ckd, cd_htn, cd_cardiac_cad | SKIPPED |
+| 74 | cd_imm_vasculitis | - | PASS |
+| 75 | cd_pulm_copd | - | FAIL |
+| 76 | cd_pulm_bt | - | PASS |
+| 77 | cd_multi_m1 | ckd, rrt, cd_dm_dx, cd_htn, cd_cardiac_cad, cd_obesity, cd_cardiac_rhd, cd_hepb, cd_cirrhosis, ca_breast, cd_pulm_copd, cd_pulm_bt | SKIPPED |
+| 78 | cd_nutr_low | - | FAIL |
+| 79 | cd_pulm | - | PASS |
+| 80 | cd_rheum_aps | cd_cardiac_rx | PASS |
+| 81 | cd_rheum_gout | - | PASS |
+| 82 | cd_rheum_ra | - | PASS |
+| 83 | cd_rheum_sle | - | PASS |
+| 84 | ckd_anaemia | ckd, rrt | SKIPPED |
+| 85 | ckd_journey | rrt, ckd | SKIPPED |
+| 86 | ckd_diagnostics | ckd | SKIPPED |
+| 87 | tg4630 | dmg, rrt, dmg_source, cd_dm_dx, ckd | SKIPPED |
+| 88 | ckd_card | ckd, rrt, ckd_egfr_metrics, ckd_uacr_metrics, ckd_journey, ckd_access, ckd_diagnostics, tg4630 | SKIPPED |
+| 89 | ckd_cause | cd_dm_dx, cd_htn, ckd, rrt, cd_rheum_sle, ckd_c_gn, ckd_c_tid, ckd_c_rnm | SKIPPED |
+| 90 | ckd_complications | ckd | SKIPPED |
+| 91 | ckd_labs | rrt, ckd | SKIPPED |
+| 92 | ipa_sep | - | FAIL |
+| 93 | opa_sep | - | PASS |
+| 94 | ckd_prog_vm | dmg, dmg_source, ckd, rrt, engmnt_renal, ckd_access, ckd_labs, cd_htn, cd_htn_bp_control, cd_dm_dx, cd_dm_glyc_cntrl, ckd_journey, ckd_careplan, ckd_complications, ipa_sep, opa_sep | SKIPPED |
+| 95 | ckd_shpt | ckd, rrt | SKIPPED |
+| 96 | ckd_ttem | - | FAIL |
+| 97 | vacc_covid | - | PASS |
+| 98 | cmidx_charlson | - | PASS |
+| 99 | cm_vm | vacc_covid, cmidx_charlson, rrt, cvra, cd_cardiac_cad | SKIPPED |
+| 100 | core_info_entropy | - | PASS |
+| 101 | cvra_predict1_aus | ckd, cd_dm_dx, cd_careplan, dmg_source, dmg, cd_obesity, cd_cardiac_af, cd_htn, cd_cardiac_rx | SKIPPED |
+| 102 | dm_card | cd_dm_dx, cd_dm_glyc_cntrl, cd_dm_comp, cd_dm_mx | SKIPPED |
+| 103 | dmg_eid_alt | - | PASS |
+| 104 | dmg_loc2 | - | FAIL |
+| 105 | dmg_loc_origin | - | FAIL |
+| 106 | dmg_tkcuser_interact | - | PASS |
+| 107 | ipa_icu | - | PASS |
+| 108 | pregnancy | - | FAIL |
+| 109 | dmg_vm | dmg_loc, dmg_hrn, dmg_source, ipa_sep, opa_sep, ipa_icu, pregnancy | SKIPPED |
+| 110 | egfr_graph2 | rrt | SKIPPED |
+| 111 | egfr_metrics | - | FAIL |
+| 112 | frm_func_assm | at_risk, ckd, rrt, cd_dm_dx | SKIPPED |
+| 113 | global | at_risk, dmg_loc | SKIPPED |
+| 114 | hb_graph | rrt | SKIPPED |
+| 115 | hba1c_graph | cd_dm_dx | FAIL |
+| 116 | id_cap | - | PASS |
+| 117 | id_covid19 | - | PASS |
+| 118 | id_hcv | - | PASS |
+| 119 | id_htlv | - | PASS |
+| 120 | id_sti | - | PASS |
+| 121 | id_tb | - | PASS |
+| 122 | id_uti | - | PASS |
+| 123 | kfre | ckd, dmg | SKIPPED |
+| 124 | kpi_uncategorised | - | PASS |
+| 125 | mbs715 | dmg, rrt, ckd, cd_dm_dx, cd_htn, cd_cardiac_cad, cd_cva, cd_cardiac_rhd, cd_pulm_copd | SKIPPED |
+| 126 | mbs_billing_history | - | PASS |
+| 127 | obs_vm | cd_obesity, cd_htn_bp_control | SKIPPED |
+| 128 | ortho_amputation | - | PASS |
+| 129 | ortho_fractures | - | PASS |
+| 130 | pcd | ckd, cd_dm_dx, cvra | SKIPPED |
+| 131 | periop_nsqip | cd_cardiac_cad, cd_cardiac_vhd, cd_htn, cd_pulm, rrt, ckd, cd_obesity, cd_nutr_low | SKIPPED |
+| 132 | phos_graph | rrt | SKIPPED |
+| 133 | rrt_hd_adequacy | rrt | SKIPPED |
+| 134 | rrt_1_metrics | rrt | SKIPPED |
+| 135 | rrt_hd_param | rrt | SKIPPED |
+| 136 | rrt_1_card | rrt, rrt_hd_adequacy, rrt_1_metrics, rrt_hd_param | SKIPPED |
+| 137 | rrt_assert | rrt | SKIPPED |
+| 138 | rrt_hd_acc_iv | rrt, ckd_access | SKIPPED |
+| 139 | rrt_hd_acc_card | rrt, rrt_hd_acc_iv | SKIPPED |
+| 140 | rrt_hd_loc | - | FAIL |
+| 141 | rrt_hd_location | rrt | SKIPPED |
+| 142 | rrt_hd_prog_vm | dmg, dmg_source, rrt, engmnt_renal, ipa_sep, opa_sep, rrt_hd_param, cd_htn_bp_control, rrt_hd_adequacy | SKIPPED |
+| 143 | rrt_journey | rrt | SKIPPED |
+| 144 | rrt_labs_euc | rrt | SKIPPED |
+| 145 | rrt_new3_wip | - | FAIL |
+| 146 | rrt_panel_vm | rrt, rrt_hd_location, rrt_labs_euc, ckd_shpt, ckd_anaemia, rrt_hd_acc_iv, rrt_hd_param, rrt_hd_adequacy, rrt_1_metrics, rrt_hd_prog_vm, cd_htn_bp_control | SKIPPED |
+| 147 | rrt_pd | - | PASS |
+| 148 | rrt_pd_card | rrt | SKIPPED |
+| 149 | rrt_tx | rrt | SKIPPED |
+| 150 | rx_is_sot | - | PASS |
+| 151 | rrt_tx_card | rrt, rrt_tx, rx_is_sot | SKIPPED |
+| 152 | rx_cv_common | - | PASS |
+| 153 | rx_cv_lmd | - | PASS |
+| 154 | rx_desc_ptr | - | PASS |
+| 155 | rx_rrt_common | - | PASS |
+| 156 | sx_abdo | - | PASS |
+| 157 | tg2610 | dmg, dmg_source, cd_dm_dx, cd_dm_glyc_cntrl, ckd | SKIPPED |
+| 158 | tg4110 | dmg, dmg_source | SKIPPED |
+| 159 | tg4122 | dmg, ckd, engmnt_renal, dmg_source | SKIPPED |
+| 160 | tg4123 | dmg, ckd, engmnt_renal, dmg_source | SKIPPED |
+| 161 | tg4410 | dmg, dmg_source, rrt, cd_dm_dx, ckd, engmnt_renal | SKIPPED |
+| 162 | tg4420 | dmg, dmg_source, rrt, engmnt_renal | SKIPPED |
+| 163 | tg4610 | dmg, ckd, dmg_source, engmnt_renal | SKIPPED |
+| 164 | tg4620 | dmg, ckd, ckd_egfr_metrics, engmnt_renal, dmg_source | SKIPPED |
+| 165 | tg4660 | ckd, dmg, dmg_source, cd_dm_dx | SKIPPED |
+| 166 | tg4720 | dmg, dmg_source | SKIPPED |
+| 167 | tg4722 | dmg, dmg_source | SKIPPED |
+| 168 | tg4810 | dmg, dmg_source | SKIPPED |
+
+## Timing Breakdown
+
+| Stage | Time (ms) |
+|-------|-----------|
+| Loading | 27 |
+| Parsing | 9 |
+| Linking | 10 |
+| Transform | 0 |
+| SQL Generation | 19 |
+| Execution | 246051 |
+
+---
+
+*Generated by picorules-compiler-js-db-validator*
