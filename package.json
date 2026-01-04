@@ -31,7 +31,7 @@
     "mssql": "^10.0.0",
     "oracledb": "^6.0.0",
     "pg": "^8.16.3",
-    "picorules-compiler-js-core": "^1.0.4"
+    "picorules-compiler-js-core": "^1.0.6"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
